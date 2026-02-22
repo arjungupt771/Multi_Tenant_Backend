@@ -1,0 +1,22 @@
+import { PERMISSIONS } from "./permissions.js";
+
+export const ROLES = {
+  ADMIN: "ADMIN",
+  MANAGER: "MANAGER",
+  MEMBER: "MEMBER"
+};
+
+export const ROLE_PERMISSIONS = {
+  ADMIN: Object.values(PERMISSIONS),
+
+  MANAGER: [
+    PERMISSIONS.PROJECT_CREATE,
+    PERMISSIONS.TASK_CREATE,
+    PERMISSIONS.TASK_ASSIGN,
+    PERMISSIONS.TASK_UPDATE_STATUS
+  ],
+
+  MEMBER: [
+    PERMISSIONS.TASK_UPDATE_STATUS
+  ]
+};
