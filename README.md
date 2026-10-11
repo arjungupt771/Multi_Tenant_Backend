@@ -20,39 +20,6 @@ Designed using real SaaS architecture patterns, not tutorial shortcuts.
 
 ⚠️ Centralized Error Handling
 
-🧠 Architecture Overview
-
-Multi-Tenancy Strategy
-
-Single MongoDB database
-
-Each document (except Organization) contains organizationId
-
-organizationId is extracted only from JWT
-
-All DB queries are scoped by tenant
-
-Request
- → Auth Middleware (JWT)
- → Tenant Middleware (organizationId)
- → Permission Middleware (RBAC)
- → Controller
- → Service
- → Tenant-Scoped DB Query
-
-
-This guarantees zero cross-tenant data leakage.
-
-🛠 Tech Stack
-
-Backend: Node.js, Express.js
-
-Database: MongoDB (Mongoose)
-
-Auth: JWT, bcrypt
-
-Architecture: Middleware-driven, service-layer business logic
-
 📁 Project Structure
 src/
 ├── config/
@@ -177,3 +144,19 @@ Automated tests (Jest)
 Rate limiting
 
 Dockerized deployment
+---
+
+## Frontend
+
+A minimal React frontend lives in the `frontend/` directory. It communicates with the backend API on port 5000 (configurable via `REACT_APP_API_URL`).
+
+### Quick start
+
+```bash
+# from repository root
+cd frontend
+npm install
+npm start
+```
+
+The front end provides a signup page, project CRUD and task management. JWT tokens are stored in `localStorage` and attached to subsequent API requests. Refer to `frontend/README.md` for more details.

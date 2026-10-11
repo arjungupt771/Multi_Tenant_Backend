@@ -1,5 +1,6 @@
 import express from "express";  
 import dotenv from "dotenv";
+import cors from "cors";
 import connectDB from "./config/db.js"
 import errorMiddleware from "./middlewares/error.middleware.js";
 import authRoutes from "./routes/auth.routes.js";
@@ -10,6 +11,9 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// enable CORS for frontend development
+app.use(cors());
 
 app.use(express.json());
 

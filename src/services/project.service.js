@@ -21,13 +21,21 @@ export const deleteProjectService = async ({
   projectId,
   organizationId
 }) => {
+  if (!projectId) {
+    const error = new Error("Project ID is required");
+    error.statusCode = 400;
+    throw error;
+  }
+
   const project = await Project.findOneAndDelete({
     _id: projectId,
     organizationId
   });
 
   if (!project) {
-    throw new Error("Project not found");
+    const error = new Error("Project not found");
+    error.statusCode = 404;
+    throw error;
   }
 
   return project;

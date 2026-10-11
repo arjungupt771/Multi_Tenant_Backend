@@ -1,5 +1,13 @@
-// src/config/jwt.js
+
+import "dotenv/config";
+
+const secret = process.env.JWT_SECRET;
+
+if (!secret) {
+  throw new Error("JWT_SECRET environment variable is required");
+}
+
 export const jwtConfig = {
-  secret: process.env.JWT_SECRET,
+  secret,
   expiresIn: "7d"
 };
